@@ -1,31 +1,34 @@
 import 'package:flutter/material.dart';
+
 void main() => runApp(MyAppVova());
 
+// ignore: must_be_immutable
 class MyAppVova extends StatelessWidget {
-  const MyAppVova({Key? key}) : super(key: key);
+  int questionIndex = 0;
   void answerQuestion() {
-    print('Answer chosen');
+    questionIndex += 1;
+    // ignore: avoid_print
+    print(questionIndex);
   }
+
   @override
   Widget build(BuildContext context) {
+   List <String> questions = [
+    'What\'s your favourite color?',
+   'What\'s your favourite animal?',
+   'What\'s your favourite lesson?',
+   ];
     return MaterialApp(
-        home: Scaffold(
-            appBar: AppBar(title: const Text('my first app')),
-            body: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Text('list of buttons'),
-                  RaisedButton(
-                      child: const Text('btn1'), onPressed: answerQuestion),
-                  RaisedButton(
-                      child: const Text('btn2'),
-                      onPressed: () => print('btn2 is pressed')), //аноним. ф-ия
-                  RaisedButton(
-                      child: const Text('btn3'),
-                      onPressed: () {          //аноним. ф-ия
-                        print('btn3 is pressed!!!');
-                      }),
-                  RaisedButton(
-                      child: const Text('btn4'), onPressed: answerQuestion)
-                ])));  }}
+      home: Scaffold(
+        appBar: AppBar(title: Text('AppBar Questions')),
+        body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(questions [questionIndex]),
+              RaisedButton(child: const Text('btn1'), onPressed: answerQuestion)
+            ]),
+      ),
+    );
+  }
+}
