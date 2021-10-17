@@ -1,35 +1,51 @@
 import 'package:flutter/material.dart';
-import './question.dart';
+import 'answer.dart';
+import 'question.dart';
+import 'quiz.dart';
+import 'result.dart';
 
-void main() => runApp(MyApp1());
+void main() => runApp(MyQuiz1());
 
-class MyApp1 extends StatefulWidget {
-  const MyApp1({Key? key}) : super(key: key);
+class MyQuiz1 extends StatefulWidget {
   @override
-  _MyApp1State createState() => _MyApp1State();
+  _MyQuiz1State createState() => _MyQuiz1State();
 }
 
-class _MyApp1State extends State<MyApp1> {
-  int _ques_ind = 0;
-  void ques_titl() {
+class _MyQuiz1State extends State<MyQuiz1> {
+  final _questionS = const [
+    {
+      'ques_text': 'what is your fav-t color?',
+      'answ_text': ['red', 'blue', 'green']
+    },
+    {
+      'ques_text': 'what is your fav-t fruit?',
+      'answ_text': ['apple', 'peach', 'melon']
+    },
+    {
+      'ques_text': 'what is your fav-t season?',
+      'answ_text': ['summer', 'autumn', 'winter']
+    },
+  ];
+  int q_ind = 0;
+  void ansQues() {
     setState(() {
-      _ques_ind += 1;
+      q_ind += 1;
     });
-    print(_ques_ind);
+    print(q_ind);
+
+    if (q_ind < _questionS.length) {
+      print('We have more questions1');
+    }
   }
 
-  final List<String> _questions = ['q11111111', 'q22222222', 'q3333333', 'q4'];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: Scaffold(
-            appBar: AppBar(title: Text('My App V1')),
-            body: Column(children: [
-              Question(_questions[_ques_ind]),
-              RaisedButton(child: Text('btn1'), onPressed: ques_titl),
-              RaisedButton(child: Text('btn2'), onPressed: ques_titl),
-              RaisedButton(child: Text('btn3'), onPressed: ques_titl),
-              RaisedButton(child: Text('btn4'), onPressed: ques_titl)
-            ])));
+      home: Scaffold(
+          appBar: AppBar(title: Text('QuizAppVova')),
+          body: q_ind < _questionS.length
+              ? Quiz(q_indq: q_ind, questionSq: _questionS, ansQuesq: ansQues)
+              : Result()),
+    );
   }
 }
