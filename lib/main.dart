@@ -21,24 +21,24 @@ class _MyQuizAppState extends State<MyQuizApp> {
       'answerMap': [
         {'text': 'a1', 'score': 10},
         {'text': 'a2', 'score': 20},
-        {'text': 'a3', 'score': 30},
-      ],
+        {'text': 'a3', 'score': 30}
+      ]
     },
     {
       'questionMap': 'q2',
       'answerMap': [
         {'text': 'a21', 'score': 10},
         {'text': 'a22', 'score': 20},
-        {'text': 'a23', 'score': 30},
-      ],
+        {'text': 'a23', 'score': 30}
+      ]
     },
     {
       'questionMap': 'q3',
       'answerMap': [
         {'text': 'a31', 'score': 10},
         {'text': 'a32', 'score': 20},
-        {'text': 'a33', 'score': 30},
-      ],
+        {'text': 'a33', 'score': 30}
+      ]
     },
   ];
 
@@ -65,7 +65,7 @@ class _MyQuizAppState extends State<MyQuizApp> {
     return MaterialApp(
         home: Scaffold(
       appBar: AppBar(
-        title: Text('my 55 app!'),
+        title: Text('my 55 app!')
       ),
       body: quizInd < ans_ques_list.length
           ? Column(
@@ -79,7 +79,7 @@ class _MyQuizAppState extends State<MyQuizApp> {
                         fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center),
                 Quiz(ans_ques_list, quizInd, ans_quiz_func)
-              ],
+              ]
             )
           : Result(quizResult, resZero),
     ));
