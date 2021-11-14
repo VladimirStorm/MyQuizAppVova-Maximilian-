@@ -1,35 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:flutter1_complete_guide/quiz.dart';
+import 'answer.dart';
+import 'question.dart';
 
 class Result extends StatelessWidget {
-  final int resultScore;
-  Result(this.resultScore);
+  int scoreRes;
+  final VoidCallback funcRes;
+  Result(this.scoreRes, this.funcRes);
 
-String get resultPhrase {
-String resultText;
-if (resultScore <=30){
-  resultText = 'You are awesome and innocent';
-}
-else if (resultScore <=60){
-  resultText = 'Pretty likeable!';
-}
-else if (resultScore <=90){
-  resultText = 'You are ... strange!';
-}
-else {
-  resultText = 'You are so bad';
-}
-return resultText;
-}
+  String get textResGet {
+    String textResGetR;
+    if (scoreRes < 30) {
+      textResGetR = 'you are less than 30';
+    } else if (scoreRes == 30) {
+      textResGetR = 'you are good =30';
+    } else if (scoreRes < 50) {
+      textResGetR = 'you are best, and less than 50';
+    } else {
+      textResGetR = 'you are best, and bigger than 50';
+    }
+    return textResGetR;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        width: double.infinity,
-        child: Text(resultPhrase,
-            textAlign: TextAlign.center,
+    return Column(
+      children: [
+        Container(
+            width: double.infinity,
+            child:  Text(
+              textResGet,
+              style: const TextStyle(
+                  color: Colors.red,
+                  fontSize: 24,
+                  fontWeight: FontWeight.w800,
+                  fontStyle: FontStyle.italic),
+              textAlign: TextAlign.center
+            )),
+        TextButton(
+          onPressed: funcRes,
+          child: const Text(
+            'click me to repeat again',
             style: TextStyle(
-                color: Colors.blue,
-                fontSize: 30,
-                fontWeight: FontWeight.bold)));
+                color: Colors.blue, 
+                fontSize: 25, fontWeight: FontWeight.w400)
+          )
+        )
+      ],
+    );
   }
 }

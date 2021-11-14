@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
-import 'question.dart';
 import 'answer.dart';
+import 'question.dart';
 
 class Quiz extends StatelessWidget {
-  final List<Map<String, Object>> ans_ques_listQ;
-  final Function ans_ques_funcQ;
-  final int quesIndQ;
-  const Quiz(this.ans_ques_listQ, this.ans_ques_funcQ, this.quesIndQ);
+  List<Map<String, Object>> ans_ques_listQ;
+  int quizIndQ;
+  final Function ans_quiz_funcQ;
+  Quiz(this.ans_ques_listQ, this.quizIndQ, this.ans_quiz_funcQ);
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      Text('Вопросы и ответы'),
-      Question(ans_ques_listQ[quesIndQ]['questionMap']),
-      //здесь добавл-ся ещё лист виджетов, после трёх точек, с помощью mapping
-      ...((ans_ques_listQ[quesIndQ]['answerMap']) as List<Map<String, Object>>)
-          .map((ansMapArg) {
-        return Answer(
-          ansMapArg['text'],
-          () => ans_ques_funcQ(ansMapArg['score']),
-        );
-      }).toList()
-    ]);
+    return Column(
+      children: [
+        Question(ans_ques_listQ[quizIndQ]['questionMap']),
+        ...((ans_ques_listQ[quizIndQ]['answerMap'])
+                as List<Map<String, Object>>)
+            .map((v1map) {
+          return Answer(
+            v1map['text'].toString(),
+            () => ans_quiz_funcQ(
+              (v1map['score']),
+            ),
+          ); // Answer
+        }).toList()
+      ],
+    );
   }
 }
